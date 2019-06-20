@@ -1,156 +1,94 @@
-// let array = [1,2,3]
+class PostOffice {
+    constructor(){
+        this.listaPisama = new Queue();
 
-// function sumOFThree(a,b,c){
-//     return a + b + c;
-// }
+        setInterval(async () => {
+            try {
+                if (this.listaPisama.isEmpty()){
+                    await this.sendLetter();
+                    console.log('Pismo uspesno poslato');
+                }
+            } catch (Error){
+                // console.log('Error');
+                console.log(Error)
+            }
+        },10000);
+    }
 
+    sendLetter = () =>
+        new Promise((resolve,reject) =>
+            setTimeout(() => {
+                Math.random()>0.1
+                ?resolve(this.listaPisama.dequeue())
+                :reject('Letter lost');
+            },3000)
+        );
 
-// // console.log(sumOFThree(...array));
-
-// // drugi zadatak
-
-// function toBegginingOfArr(element){
-//     let arr = [...element,1,2,3,4];
-//     return arr;
-// }
-
-
-// console.log(toBegginingOfArr([1]));
-
-// function toEndOfArr(element){
-//     let arr = [1,2,3,4,...element];
-//     return arr;
-// }
-
-// console.log(toEndOfArr([6]));
-
-// let numbers = [1,2,3,4,5];
-// let numbersMultipliedByTwo = [];
-
-// for(let i = 0; i < numbers.length; i++) {
-//     numbersMultipliedByTwo.push(numbers[i] * 2);
-// }
-
-// console.log(numbersMultipliedByTwo);
-
-// var array = [1,2,3,4,5];
-// var arrayDouble = [];
-
-// arrayDouble=array.map(element=>element*2);
-
-// arrayTriple = array.map((element,index,array)=>{
-//     console.log(index);
-//     console.log(array);
-//     return element * 2;
-// })
-
-// console.log(arrayTriple);
-
-// var arrayMan = [1,2,3,4,5,6];
-
-// var evenArr = [];
-
-// for(let i = 0; i < arrayMan.length; i++){
-//     if (arrayMan[i] % 2 === 0){
-//         evenArr.push(arrayMan[i]);
-//     } 
-// }
-
-// console.log(evenArr);
-
-// console.log(arrayMan.filter(element=>element%2===0));
-
-// const inventors = [
-//     { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
-//     { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
-//     { first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
-//     { first: 'Marie', last: 'Curie', year: 1867, passed: 1934 },
-//     { first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 },
-//     { first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 },
-//     { first: 'Max', last: 'Planck', year: 1858, passed: 1947 },
-//     { first: 'Katharine', last: 'Blodgett', year: 1898, passed: 1979 },
-//     { first: 'Ada', last: 'Lovelace', year: 1815, passed: 1852 },
-//     { first: 'Sarah E.', last: 'Goode', year: 1855, passed: 1905 },
-//     { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
-//     { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
-//   ];
+    createLetter = () => {
   
-//   const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
-  
-//   const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-  
-// // let inventors1500 = inventors.filter(inventor => inventor.year > 1500 && inventor.year < 1600);
+                setTimeout(() => {
+                    var per1 = new Customer('Pera','Peric');
+                    var per2 = new Customer('Marko','Markovic');
+                    var letter = (per1,per2,'test');
+                    this.listaPisama.enqueue(letter);
+                    // console.log('test');
+                    //resolve('Letter added');
+                    },3000);}
 
-// console.log(inventors1500);
+    }
 
-// let inventorsName = inventors.map(inventor => inventor.first + ' ' + inventor.last);
-// let inventorsNamesObj = inventors.map(inventor => ({name : inventor.first, last: inventor.last}));
+class Person {
+    constructor(firstName,lastName){
+        if(this.constructor === Person){
+            throw new Error('abstract class')
+        }
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+}
 
-// console.log(inventorsName);
-// console.log(inventorsNamesObj);
+class Customer extends Person{
+    constructor(firstName,lastName){
+        super(firstName,lastName)
+    }
 
-// let inventorYears = inventors.map(inventor => ({years : inventor.passed - inventor.year}));
-// console.log(inventorYears);
-// let inventorSumYears = inventorYears.reduce((acc,curr) => acc + curr, 0);
-// console.log(inventorSumYears);
+    primiPismo = () => {
+        console.log('pismo');
+    }
+}
 
-// let dataCar = data.filter(car => car === 'car');
-// let dataTruck = data.filter(truck => truck === 'truck');
-// let dataBike = data.filter(bike => bike === 'bike');
-// let dataWalk = data.filter(walk => walk === 'walk');
-// let dataVan = data.filter(van => van === 'van');
+class Letter {
+    constructor(posiljalac,primaoc,sadrzaj){
+        this.posiljalac = posiljalac;
+        this.primaoc = primaoc;
+        this.sadrzaj = sadrzaj;
+    }
+}
 
-// console.log(dataCar.length);
-// console.log(dataTruck.length);
-// console.log(dataBike.length);
-// console.log(dataWalk.length);
-// console.log(dataVan.length);
+class Queue {
+    //Constructor
+    constructor(){
+      //Private array for the queue
+      this.queue = [];
+    }
+    //At new item at the end of the queue
+    enqueue(item){
+      this.queue.push(item);
+    }
+    //Remove and return the item at the front of the queue
+    dequeue(){
+      return this.queue.shift();
+    }
+    //Returns if the queue is empty or not
+    isEmpty(){
+      return this.queue.length !== 0;
+    }
+   }
 
-// data.reduce((acc,curr)=>{
-//     acc[curr] = acc[curr]!=null?acc[curr]+1:1;
-
-//     return acc;
-// },{});
-
-// const people = [
-//     { name: 'Wes', year: 1988 },
-//     { name: 'Kait', year: 1986 },
-//     { name: 'Irv', year: 1970 },
-//     { name: 'Lux', year: 2015 }
-//   ];
-  
-//   const comments = [
-//     { text: 'Love this!', id: 523423 },
-//     { text: 'Super good', id: 823423 },
-//     { text: 'You are the best', id: 2039842 },
-//     { text: 'Ramen is my fav food ever', id: 123523 },
-//     { text: 'Nice Nice Nice!', id: 542328 }
-//   ];
-
-
-// people.some(person => 2019-person.year > 19);
-// people.every(person => 2019-person.year > 19);
-
-// let peopleAge = people.map(people => 2018 - people.year);  
-
-// var over19 = function(element) {
-//     // checks whether an element is even
-//     if(element > 19){
-//         return element;
-//     }
-//   };
-
-// function isOver19(currentAge) {
-//     return currentAge>19;
-// }
-
-// let comment = comments.find(comment=>comment.id === 823423);
-
-// let newComments = comments.filter(comment =>comment.id !== 823423);
-
-// // console.log(isOver19);
-
-// console.log(peopleAge.some(over19));
-// console.log(peopleAge.every(isOver19));
-// console.log(comment);
-// console.log(newComments);
+// let customer = new Customer('Goran','Jovicic');
+// let customer2 = new Customer('Marko','Markovic');
+let postOffice = new PostOffice();
+postOffice.createLetter()
+// let pismo1 = new Letter(customer,customer2,'Tekst pisma');
+// console.log(postOffice.posaljiPismo(pismo1));
+// console.log(postOffice);
