@@ -99,13 +99,15 @@ class Errors {
 // var form = new Form(object);
 // console.log(form.data());
 // console.log(form);
-var form = new Form({username:'pera',password: 'peric'})
-// console.log(form);
-// console.log(form);
-// form.reset();
+// var form = new Form({username:'',password: ''})
+// form.username = 'goran';
+// form.password = 'jovicic';
+// // console.log(form);
+// // console.log(form);
+// // form.reset();
+// // console.log(form)
+// // form.submit();
+// form.reset()
 // console.log(form)
 // form.submit();
-console.log(form.reset)
-console.log(form)
-form.submit();
 // form.onSuccess(form)
